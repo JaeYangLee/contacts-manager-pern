@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
+import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 
 function App() {
-  const [contacts, setContacts] = useState(false);
+  const [contacts, setContacts] = useState("");
+  const [isNewContactFormOpen, setNewContactForm] = useState(false);
 
   useEffect(() => {
     fetchContacts();
@@ -58,7 +60,29 @@ function App() {
   };
   return (
     <>
-      <ContactsManagerNewContactForm onAdd={addContact} />
+      <header className="p-2 flex flex-col items-center justify-center gap-2">
+        <h1 className="text-2xl">Contacts Manager App</h1>
+        <button
+          className="border-1 px-2 rounded"
+          onClick={() => setNewContactForm(true)}
+        >
+          Add New Contact
+        </button>
+      </header>
+
+      <main>
+        <ContactsManagerContactsList
+          contact={contacts}
+          onUpdate={updateContact}
+          onDelete={deleteContact}
+        />
+      </main>
+
+      <ContactsManagerNewContactForm
+        onAdd={addContact}
+        isNewContactFormOpen={isNewContactFormOpen}
+        onNewContactFormClose={() => setNewContactForm(false)}
+      />
     </>
   );
 }
