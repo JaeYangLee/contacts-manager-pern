@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
-import ContactsManagerForm from "./components/contactsManagerForm";
+import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
 
 function App() {
   const [contacts, setContacts] = useState(false);
@@ -58,7 +58,7 @@ function App() {
   };
   return (
     <>
-      <ContactsManagerForm />
+      <ContactsManagerNewContactForm onAdd={addContact} />
     </>
   );
 }
