@@ -11,17 +11,19 @@ function ContactsManagerNewContactForm({
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
+  const [isSetNameOpen, setSetNameOpen] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!name.trim() || !number.trim() || !email.trim()) {
       return;
-    } else {
     }
 
     onAdd(name, number, email);
+
     setSuccessModalOpen(true);
+    setSetNameOpen(name);
 
     setName("");
     setNumber("");
@@ -103,13 +105,13 @@ function ContactsManagerNewContactForm({
       </div>
 
       <ContactsManagerSuccessModal
-        contact={name}
+        contact={isSetNameOpen}
         isSuccessModalOpen={isSuccessModalOpen}
         onSuccessModalClose={
           (() => setSuccessModalOpen(false), onNewContactFormClose)
         }
         title={"Contact Added!"}
-        message={`is now on your contact list!`}
+        message={` is now on your contact list!`}
       />
     </>
   );
