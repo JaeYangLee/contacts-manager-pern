@@ -1,7 +1,6 @@
 import React from "react";
 
 function ContactsManagerSuccessModal({
-  contact,
   isSuccessModalOpen,
   onSuccessModalClose,
   title,

@@ -109,7 +109,7 @@ function ContactsManagerNewContactForm({
           (() => setSuccessModalOpen(false), onNewContactFormClose)
         }
         title={"Contact Added!"}
-        message={`${name} is now on your contact list!`}
+        message={`is now on your contact list!`}
       />
     </>
   );
