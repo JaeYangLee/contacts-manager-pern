@@ -29,6 +29,7 @@ function App() {
         email,
       });
       setContacts([...contacts, res.data]);
+      setNewContactForm(false);
     } catch (err) {
       console.error("Error Adding Contact:", err.message);
     }
@@ -61,7 +62,7 @@ function App() {
   return (
     <>
       <header className="p-2 flex flex-col items-center justify-center gap-2">
-        <h1 className="text-2xl">Contacts Manager App</h1>
+        <h1 className="text-2xl font-bold">Contacts Manager App</h1>
         <button
           className="border-1 px-2 rounded"
           onClick={() => setNewContactForm(true)}

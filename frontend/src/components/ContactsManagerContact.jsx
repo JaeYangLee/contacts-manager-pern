@@ -13,14 +13,14 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
 
   return (
     <>
-      <li className="w-full flex flex-row justify-between">
+      <li className="w-full flex flex-row items-center justify-between">
         <section className="flex flex-col">
-          <p>{contact.name}</p>
-          <span>{contact.number}</span>
-          <span>{contact.email}</span>
+          <p className="text-lg font-bold">{contact.name}</p>
+          <span className="text-sm font-light">{contact.number}</span>
+          <span className="text-sm">{contact.email}</span>
         </section>
 
-        <section className="flex flex-row gap-2">
+        <section className="flex flex-col gap-2">
           <button onClick={handleEdit}>Edit</button>
           <button onClick={() => onDelete(contact.id)}>Delete</button>
         </section>

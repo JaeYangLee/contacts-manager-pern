@@ -72,7 +72,7 @@ function ContactsManagerNewContactForm({
                   Add Contact
                 </button>
                 <button
-                  type="cancel"
+                  type="button"
                   className="px-2 border-1 rounded"
                   onClick={onNewContactFormClose}
                 >
