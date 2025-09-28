@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import ContactsManagerSuccessModal from "./ContactsManagerSuccessModal";
 
 function ContactsManagerNewContactForm({
   onAdd,
@@ -9,15 +10,18 @@ function ContactsManagerNewContactForm({
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!name.trim() || !number.trim() || !email.trim()) {
       return;
+    } else {
     }
-    onAdd(name, number, email);
 
+    onAdd(name, number, email);
+    setSuccessModalOpen(true);
     setName("");
     setNumber("");
     setEmail("");
@@ -36,38 +40,42 @@ function ContactsManagerNewContactForm({
           <h1 className="mb-4 text-2xl font-bold">Add New Contact</h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-12">
-            <section className="flex flex-col gap-2">
+            <section className="flex flex-col gap-3">
               <div className="flex flex-col">
-                <label className="text-sm">Enter name:</label>
+                <label className="text-sm opacity-70">Enter name:</label>
                 <input
                   required
                   type="text"
                   placeholder="e.g., Juan Dela Cruz"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-sm">Enter phone number:</label>
+                <label className="text-sm opacity-70">
+                  Enter phone number:
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="+63 912 345 6789"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
-                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
               <div className="flex flex-col">
-                <label className="text-sm">Enter e-mail address:</label>
+                <label className="text-sm opacity-70">
+                  Enter e-mail address:
+                </label>
                 <input
                   required
                   type="text"
                   placeholder="example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
             </section>
@@ -92,6 +100,17 @@ function ContactsManagerNewContactForm({
           </form>
         </div>
       </div>
+
+      <ContactsManagerSuccessModal
+        key={name}
+        contact={name}
+        isSuccessModalOpen={isSuccessModalOpen}
+        onSuccessModalClose={
+          (() => setSuccessModalOpen(false), onNewContactFormClose)
+        }
+        title={"Contact Added!"}
+        message={`${name} is now on your contact list!`}
+      />
     </>
   );
 }
