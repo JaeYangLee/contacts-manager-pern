@@ -25,58 +25,67 @@ function ContactsManagerNewContactForm({
 
   return (
     <>
-      <div className="fixed top-0 bg-black/50 w-screen h-screen flex flex-col items-center justify-center">
-        <div className="flex flex-col rounded p-3 bg-white shadow-lg shadow-black/20">
-          <h1 className="text-lg">New Contact</h1>
+      <div
+        className="fixed top-0 flex flex-col items-center justify-center w-screen h-screen bg-black/50"
+        onClick={onNewContactFormClose}
+      >
+        <div
+          className="flex flex-col rounded px-5 py-4 shadow-[5px_5px_0px_0px_rgba(0,0,0,0.75)] bg-[#fff2e9] border-1"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h1 className="mb-4 text-2xl font-bold">Add New Contact</h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-12">
             <section className="flex flex-col gap-2">
               <div className="flex flex-col">
-                <label>Enter name:</label>
+                <label className="text-sm">Enter name:</label>
                 <input
                   required
                   type="text"
                   placeholder="e.g., Juan Dela Cruz"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="border-1 rounded px-1"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
                 />
               </div>
               <div className="flex flex-col">
-                <label>Enter phone number:</label>
+                <label className="text-sm">Enter phone number:</label>
                 <input
                   required
                   type="text"
                   placeholder="+63 912 345 6789"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
-                  className="border-1 rounded px-1"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
                 />
               </div>
               <div className="flex flex-col">
-                <label>Enter e-mail address:</label>
+                <label className="text-sm">Enter e-mail address:</label>
                 <input
                   required
                   type="text"
                   placeholder="example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border-1 rounded px-1"
+                  className="p-2 text-sm rounded border-1 placeholder:text-xs"
                 />
               </div>
             </section>
 
             <section>
-              <div className="flex flex-row gap-2 justify-end">
-                <button type="submit" className="px-2 border-1 rounded">
+              <div className="flex flex-row justify-end gap-2">
+                <button
+                  type="submit"
+                  className="px-2 text-sm rounded border-1 bg-green-400 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
+                >
                   Add Contact
                 </button>
                 <button
                   type="button"
-                  className="px-2 border-1 rounded"
+                  className="px-2 text-sm rounded border-1 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                   onClick={onNewContactFormClose}
                 >
-                  Cancel
+                  <span className="text-black/60">Cancel</span>
                 </button>
               </div>
             </section>

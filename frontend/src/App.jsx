@@ -61,29 +61,43 @@ function App() {
   };
   return (
     <>
-      <header className="p-2 flex flex-col items-center justify-center gap-2">
-        <h1 className="text-2xl font-bold">Contacts Manager App</h1>
-        <button
-          className="border-1 px-2 rounded"
-          onClick={() => setNewContactForm(true)}
-        >
-          Add New Contact
-        </button>
-      </header>
+      <div className="w-screen h-screen bg-[#fff2e9]">
+        <header className="flex flex-col items-center justify-center gap-2 p-2">
+          <h1 className="text-2xl font-bold">Contacts Manager App</h1>
+          <button
+            type="button"
+            onClick={() => setNewContactForm(true)}
+            className="bg-yellow-300 button border-1 p-1 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-6"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </header>
 
-      <main>
-        <ContactsManagerContactsList
-          contacts={contacts}
-          onUpdate={updateContact}
-          onDelete={deleteContact}
+        <main>
+          <ContactsManagerContactsList
+            contacts={contacts}
+            onUpdate={updateContact}
+            onDelete={deleteContact}
+          />
+        </main>
+
+        <ContactsManagerNewContactForm
+          onAdd={addContact}
+          isNewContactFormOpen={isNewContactFormOpen}
+          onNewContactFormClose={() => setNewContactForm(false)}
         />
-      </main>
-
-      <ContactsManagerNewContactForm
-        onAdd={addContact}
-        isNewContactFormOpen={isNewContactFormOpen}
-        onNewContactFormClose={() => setNewContactForm(false)}
-      />
+      </div>
     </>
   );
 }
