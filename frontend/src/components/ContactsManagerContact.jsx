@@ -38,13 +38,13 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
 
         <section className="flex flex-col gap-3">
           <button
-            className="px-1 text-xs bg-blue-300 border rounded"
+            className="px-1 text-xs bg-blue-300 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
             onClick={handleEdit}
           >
             Edit
           </button>
           <button
-            className="px-1 text-xs bg-red-400 border rounded"
+            className="px-1 text-xs bg-red-400 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
             onClick={() => onDelete(contact.id)}
           >
             Delete
