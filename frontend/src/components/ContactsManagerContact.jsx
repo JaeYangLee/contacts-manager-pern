@@ -13,7 +13,7 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
 
         <section className="flex flex-row gap-2">
           <button onClick={onUpdate}>Edit</button>
-          <button onClick={onDelete}>Delete</button>
+          <button onClick={() => onDelete(contact.id)}>Delete</button>
         </section>
       </li>
     </>

@@ -36,14 +36,14 @@ function App() {
 
   const updateContact = async (id, name, number, email) => {
     try {
-      const res = await axios.put(`http://localhost:5000/contacts${id}`, {
+      const res = await axios.put(`http://localhost:5000/contacts/${id}`, {
         id,
         name,
         number,
         email,
       });
       setContacts(
-        contacts.map((contact) => (contact.id === id ? res.data : contact))
+        contacts.map((contacts) => (contacts.id === id ? res.data : contacts))
       );
     } catch (err) {
       console.error("Error Updating Contact:", err.message);
@@ -52,8 +52,8 @@ function App() {
 
   const deleteContact = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/contacts${id}`);
-      setContacts(contacts.filter((contact) => contact.id !== id));
+      await axios.delete(`http://localhost:5000/contacts/${id}`);
+      setContacts(contacts.filter((contacts) => contacts.id !== id));
     } catch (err) {
       console.error("Error Deleting Contact:", err.message);
     }
@@ -72,7 +72,7 @@ function App() {
 
       <main>
         <ContactsManagerContactsList
-          contact={contacts}
+          contacts={contacts}
           onUpdate={updateContact}
           onDelete={deleteContact}
         />
