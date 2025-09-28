@@ -1,6 +1,7 @@
 import React from "react";
 
 function ContactsManagerSuccessModal({
+  contact,
   isSuccessModalOpen,
   onSuccessModalClose,
   title,
@@ -19,7 +20,7 @@ function ContactsManagerSuccessModal({
         >
           <h1>{title}</h1>
           <p>
-            {contact.name} {message}
+            {contact} {message}
           </p>
           <section>
             <button onClick={onSuccessModalClose}>Okay!</button>

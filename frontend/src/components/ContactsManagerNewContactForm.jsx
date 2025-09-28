@@ -22,6 +22,7 @@ function ContactsManagerNewContactForm({
 
     onAdd(name, number, email);
     setSuccessModalOpen(true);
+
     setName("");
     setNumber("");
     setEmail("");
@@ -102,7 +103,6 @@ function ContactsManagerNewContactForm({
       </div>
 
       <ContactsManagerSuccessModal
-        key={name}
         contact={name}
         isSuccessModalOpen={isSuccessModalOpen}
         onSuccessModalClose={
