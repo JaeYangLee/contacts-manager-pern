@@ -29,7 +29,6 @@ function App() {
         email,
       });
       setContacts([...contacts, res.data]);
-      setNewContactForm(false);
     } catch (err) {
       console.error("Error Adding Contact:", err.message);
     }
@@ -61,7 +60,7 @@ function App() {
   };
   return (
     <>
-      <div className="w-screen h-screen bg-[#fff2e9]">
+      <div className="w-full h-full bg-[#fff2e9]">
         <header className="flex flex-col items-center justify-center gap-2 p-2">
           <h1 className="text-2xl font-bold">Contacts Manager App</h1>
           <button
