@@ -3,6 +3,7 @@ import axios from "axios";
 import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
+import ContactsManagerDeleteValidator from "./components/ContactsManagerDeleteValidator";
 
 function App() {
   const [contacts, setContacts] = useState("");
@@ -89,6 +90,7 @@ function App() {
             onUpdate={updateContact}
             onDelete={deleteContact}
           />
+          <ContactsManagerDeleteValidator />
         </main>
 
         <ContactsManagerNewContactForm

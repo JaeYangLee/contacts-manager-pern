@@ -27,7 +27,7 @@ function ContactsManagerSuccessModal({
               onClick={onSuccessModalClose}
               className="border-1 px-2 rounded bg-green-400 text-sm"
             >
-              Okay!
+              Okay
             </button>
           </section>
         </div>

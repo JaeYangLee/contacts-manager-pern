@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import ContactsManagerDeleteValidator from "./ContactsManagerDeleteValidator";
 
 function ContactsManagerContact({ contact, onUpdate, onDelete }) {
+  const [isDeleteValidatorOpen, setDeleteValidatorOpen] = useState(false);
+
   const handleEdit = () => {
     const newName = prompt("Edit Contact:", contact.name) || contact.name;
     const newNumber = prompt("Edit Contact:", contact.number) || contact.number;
@@ -45,12 +48,20 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
           </button>
           <button
             className="px-1 text-xs bg-red-400 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
-            onClick={() => onDelete(contact.id)}
+            onClick={() => setDeleteValidatorOpen(true)}
           >
             Delete
           </button>
         </section>
       </li>
+
+      <ContactsManagerDeleteValidator
+        key={contact}
+        contact={contact.name}
+        onDelete={onDelete}
+        isDeleteValidatorOpen={isDeleteValidatorOpen}
+        onDeleteValidatorClose={() => setDeleteValidatorOpen(false)}
+      />
     </>
   );
 }
