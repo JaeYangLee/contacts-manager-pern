@@ -90,7 +90,6 @@ function App() {
             onUpdate={updateContact}
             onDelete={deleteContact}
           />
-          <ContactsManagerDeleteValidator />
         </main>
 
         <ContactsManagerNewContactForm
