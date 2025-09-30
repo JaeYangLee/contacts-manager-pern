@@ -15,7 +15,7 @@ function ContactsManagerSuccessModal({
         onClick={onSuccessModalClose}
       >
         <div
-          className="bg-[#fff2e9] flex flex-col items-center justify-center gap-2 py-2 px-4 rounded shadow-sm shadow-black"
+          className="text-center bg-[#fff2e9] flex flex-col items-center justify-center gap-2 py-2 px-4 rounded shadow-sm shadow-black"
           onClick={(e) => e.stopPropagation()}
         >
           <h1 className="text-xl font-bold">{title}</h1>
@@ -25,7 +25,7 @@ function ContactsManagerSuccessModal({
           <section>
             <button
               onClick={onSuccessModalClose}
-              className="border-1 px-2 rounded bg-green-400 text-sm"
+              className="px-2 text-sm bg-green-400 rounded border-1"
             >
               Okay
             </button>

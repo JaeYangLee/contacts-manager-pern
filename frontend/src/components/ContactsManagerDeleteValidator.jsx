@@ -15,26 +15,27 @@ function ContactsManagerDeleteValidator({
         onClick={onDeleteValidatorClose}
       >
         <div
-          className="p-2 bg-[#fff2e9] flex flex-col items-center justify-center gap-8"
+          className="p-2 bg-[#fff2e9] flex flex-col items-center justify-center gap-8 rounded"
           onClick={(e) => e.stopPropagation()}
         >
-          <section>
-            <h1 className="text-center">
-              Are you sure you want to delete <span>{contact}</span> from you
+          <section className="flex flex-col items-center justify-center text-center gap-2">
+            <h1 className="font-bold text-lg">
+              Delete
+              <span className="text-red-500"> {contact}</span> from your
               contacts?
             </h1>
-            <p className="text-center">There's no going back...</p>
+            <p className="text-base font-light">There's no going back...</p>
           </section>
 
           <section className="flex flex-row items-center justify-center gap-2">
             <button
-              className="border-1 px-2 rounded bg-red-400"
+              className="border-1 px-2 rounded bg-red-400 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
               onClick={onDelete}
             >
               Delete
             </button>
             <button
-              className="border-1 px-2 rounded opacity-60"
+              className="border-1 px-2 rounded text-black/60 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
               onClick={onDeleteValidatorClose}
             >
               Cancel
