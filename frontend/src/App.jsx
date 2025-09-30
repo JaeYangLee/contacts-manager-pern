@@ -1,22 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import axios from "axios";
 import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 import ContactsManagerDeleteValidator from "./components/ContactsManagerDeleteValidator";
 import ContactsManagerFooter from "./components/ContactsManagerFooter";
+import ContactManagerSearchBar from "./components/ContactManagerSearchBar";
 
 function App() {
-  const [contacts, setContacts] = useState("");
+  const [contacts, setContacts] = useState([]);
+  const [search, setSearch] = useState("");
   const [isNewContactFormOpen, setNewContactForm] = useState(false);
 
   useEffect(() => {
     fetchContacts();
-  }, []);
+  }, [search]);
 
   const fetchContacts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/contacts");
+      let url = "http://localhost:5000/contacts";
+
+      if (search) {
+        url += `?search=${encodeURIComponent(search)}`;
+      }
+
+      const res = await axios.get(url);
       setContacts(res.data);
     } catch (err) {
       console.error("Error Fetching Contacts:", err.message);
@@ -65,24 +73,27 @@ function App() {
       <div className="w-full h-full bg-[#fff2e9]">
         <header className="flex flex-col items-center justify-center gap-2 p-2">
           <h1 className="text-2xl font-bold">Contacts Manager App</h1>
-          <button
-            type="button"
-            onClick={() => setNewContactForm(true)}
-            className="bg-yellow-300 button border-1 p-1 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="size-6"
+          <div className="flex flex-row items-center justify-center gap-2">
+            <ContactManagerSearchBar search={search} setSearch={setSearch} />
+            <button
+              type="button"
+              onClick={() => setNewContactForm(true)}
+              className="bg-yellow-300 button border-1 p-1 rounded-full shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
             >
-              <path
-                fillRule="evenodd"
-                d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M12 3.75a.75.75 0 0 1 .75.75v6.75h6.75a.75.75 0 0 1 0 1.5h-6.75v6.75a.75.75 0 0 1-1.5 0v-6.75H4.5a.75.75 0 0 1 0-1.5h6.75V4.5a.75.75 0 0 1 .75-.75Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </header>
 
         <main className="w-screen h-screen">

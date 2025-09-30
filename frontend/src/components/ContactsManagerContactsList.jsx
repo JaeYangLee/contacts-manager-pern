@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import ContactsManagerContact from "./ContactsManagerContact";
 
 function ContactsManagerContactsList({ contacts = [], onUpdate, onDelete }) {
+  const [contacts2, setContacts2] = useState([]);
   return (
     <>
       <ul className="flex flex-col items-center justify-center list-disc border-b-1 border-t-1">
