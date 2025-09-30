@@ -1,11 +1,13 @@
 import React from "react";
 
 function ContactsManagerEditForm({
+  contact,
   onUpdate,
   isEditFormOpen,
   onEditFormClose,
 }) {
   if (!isEditFormOpen) return null;
+
   return (
     <>
       <div
@@ -25,7 +27,7 @@ function ContactsManagerEditForm({
                 <input
                   required
                   type="text"
-                  placeholder="e.g., Juan Dela Cruz"
+                  placeholder={contact.name}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
@@ -34,7 +36,7 @@ function ContactsManagerEditForm({
                 <input
                   required
                   type="text"
-                  placeholder="+63 912 345 6789"
+                  placeholder={contact.number}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
@@ -45,7 +47,7 @@ function ContactsManagerEditForm({
                 <input
                   required
                   type="text"
-                  placeholder="example@gmail.com"
+                  placeholder={contact.email}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>

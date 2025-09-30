@@ -15,7 +15,7 @@ function ContactsManagerDeleteValidator({
         onClick={onDeleteValidatorClose}
       >
         <div
-          className="p-2 bg-[#fff2e9] flex flex-col items-center justify-center gap-8 rounded"
+          className="p-2 bg-[#fff2e9] flex flex-col items-center justify-center gap-8 rounded shadow-[4px_4px_0px_0px_rgba(0,0,0,0.75)]"
           onClick={(e) => e.stopPropagation()}
         >
           <section className="flex flex-col items-center justify-center text-center gap-2">

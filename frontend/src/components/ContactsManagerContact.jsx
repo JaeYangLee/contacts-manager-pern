@@ -60,6 +60,8 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
       />
 
       <ContactsManagerEditForm
+        value={contact}
+        contact={contact}
         isEditFormOpen={isEditFormOpen}
         onEditFormClose={() => setEditFormOpen(false)}
       />
