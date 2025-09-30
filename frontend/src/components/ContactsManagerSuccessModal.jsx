@@ -11,7 +11,7 @@ function ContactsManagerSuccessModal({
   return (
     <>
       <div
-        className="fixed top-0 flex flex-col items-center justify-center w-screen h-screen z-60 fix bg-black/70"
+        className="fixed top-0 flex flex-col items-center justify-center w-screen h-screen z-60 fix bg-black/70 p-2"
         onClick={onSuccessModalClose}
       >
         <div

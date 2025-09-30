@@ -70,7 +70,7 @@ function App() {
   };
   return (
     <>
-      <div className="w-full h-full bg-[#fff2e9]">
+      <div className="w-screen h-screen bg-[#fff2e9]">
         <header className="flex flex-col items-center justify-center gap-2 p-2">
           <h1 className="text-2xl font-bold">Contacts Manager App</h1>
           <div className="flex flex-row items-center justify-center gap-2">
@@ -96,7 +96,7 @@ function App() {
           </div>
         </header>
 
-        <main className="w-screen h-screen">
+        <main>
           <ContactsManagerContactsList
             contacts={contacts}
             onUpdate={updateContact}
