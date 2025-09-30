@@ -4,6 +4,7 @@ import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 import ContactsManagerDeleteValidator from "./components/ContactsManagerDeleteValidator";
+import ContactsManagerFooter from "./components/ContactsManagerFooter";
 
 function App() {
   const [contacts, setContacts] = useState("");
@@ -84,7 +85,7 @@ function App() {
           </button>
         </header>
 
-        <main>
+        <main className="w-screen h-screen">
           <ContactsManagerContactsList
             contacts={contacts}
             onUpdate={updateContact}
