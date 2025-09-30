@@ -58,7 +58,7 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
       <ContactsManagerDeleteValidator
         key={contact}
         contact={contact.name}
-        onDelete={onDelete}
+        onDelete={() => onDelete(contact.id)}
         isDeleteValidatorOpen={isDeleteValidatorOpen}
         onDeleteValidatorClose={() => setDeleteValidatorOpen(false)}
       />
