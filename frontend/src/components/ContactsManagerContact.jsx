@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import ContactsManagerDeleteValidator from "./ContactsManagerDeleteValidator";
+import ContactsManagerEditForm from "./ContactsManagerEditForm";
 
 function ContactsManagerContact({ contact, onUpdate, onDelete }) {
   const [isDeleteValidatorOpen, setDeleteValidatorOpen] = useState(false);
+  const [isEditFormOpen, setEditFormOpen] = useState(false);
 
   const handleEdit = () => {
-    const newName = prompt("Edit Contact:", contact.name) || contact.name;
-    const newNumber = prompt("Edit Contact:", contact.number) || contact.number;
-    const newEmail = prompt("Edit Contact:", contact.email) || contact.email;
-
-    if (newName || newNumber || newEmail) {
-      onUpdate(contact.id, newName, newNumber, newEmail);
-    }
+    setEditFormOpen(true);
   };
 
   return (
@@ -61,6 +57,11 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
         onDelete={() => onDelete(contact.id)}
         isDeleteValidatorOpen={isDeleteValidatorOpen}
         onDeleteValidatorClose={() => setDeleteValidatorOpen(false)}
+      />
+
+      <ContactsManagerEditForm
+        isEditFormOpen={isEditFormOpen}
+        onEditFormClose={() => setEditFormOpen(false)}
       />
     </>
   );

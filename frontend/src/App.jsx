@@ -3,14 +3,14 @@ import axios from "axios";
 import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
-import ContactsManagerDeleteValidator from "./components/ContactsManagerDeleteValidator";
-import ContactsManagerFooter from "./components/ContactsManagerFooter";
 import ContactManagerSearchBar from "./components/ContactManagerSearchBar";
+import ContactsManagerEditForm from "./components/ContactsManagerEditForm";
 
 function App() {
   const [contacts, setContacts] = useState([]);
   const [search, setSearch] = useState("");
   const [isNewContactFormOpen, setNewContactForm] = useState(false);
+  const [isEditFormOpen, setEditFormOpen] = useState(false);
 
   useEffect(() => {
     fetchContacts();
@@ -102,6 +102,8 @@ function App() {
             onUpdate={updateContact}
             onDelete={deleteContact}
           />
+
+          <ContactsManagerEditForm />
         </main>
 
         <ContactsManagerNewContactForm
