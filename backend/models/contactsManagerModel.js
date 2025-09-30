@@ -5,6 +5,14 @@ const getContacts = async () => {
   return result.rows;
 };
 
+const searchContacts = async (search) => {
+  const result = await pool.query(
+    "SELECT * FROM contacts WHERE name ILIKE $1 OR email ILIKE $1 ORDER BY id ASC ",
+    [`%${search}%`]
+  );
+  return result.rows;
+};
+
 const addContact = async (name, number, email) => {
   const result = await pool.query(
     "INSERT INTO contacts (name, number, email) VALUES ($1, $2, $3) RETURNING *",
@@ -31,6 +39,7 @@ const deleteContact = async (id) => {
 
 module.exports = {
   getContacts,
+  searchContacts,
   addContact,
   updateContact,
   deleteContact,

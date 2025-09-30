@@ -2,7 +2,14 @@ const contactsManagerModel = require("../models/contactsManagerModel");
 
 const getContacts = async (req, res) => {
   try {
-    const allContacts = await contactsManagerModel.getContacts();
+    const { search } = req.query;
+    let allContacts;
+
+    if (search) {
+      allContacts = await contactsManagerModel.searchContacts(search);
+    } else {
+      allContacts = await contactsManagerModel.getContacts();
+    }
     res.json(allContacts);
   } catch (err) {
     console.error("Error Fetching Contacts!", err.message);
