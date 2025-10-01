@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import ContactsManagerSuccessModal from "./ContactsManagerSuccessModal";
 
 function ContactsManagerEditForm({
   contact,
@@ -6,6 +7,17 @@ function ContactsManagerEditForm({
   isEditFormOpen,
   onEditFormClose,
 }) {
+  const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [newNumber, setNewNumber] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+
+  const handleEdit = (e) => {
+    e.preventDefault();
+    onUpdate(contact.id, newName, newNumber, newEmail);
+    setSuccessModalOpen(true);
+  };
+
   if (!isEditFormOpen) return null;
 
   return (
@@ -20,23 +32,29 @@ function ContactsManagerEditForm({
         >
           <h1 className="mb-4 text-2xl font-bold">Edit Contact</h1>
 
-          <form className="flex flex-col gap-12">
+          <form
+            onSubmit={handleEdit}
+            type="submit"
+            className="flex flex-col gap-12"
+          >
             <section className="flex flex-col gap-3">
               <div className="flex flex-col">
                 <label className="text-sm opacity-70">Edit name:</label>
                 <input
-                  required
+                  value={newName}
                   type="text"
                   placeholder={contact.name}
+                  onChange={(e) => setNewName(e.target.value)}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
               <div className="flex flex-col">
                 <label className="text-sm opacity-70">Edit phone number:</label>
                 <input
-                  required
+                  value={newNumber}
                   type="text"
                   placeholder={contact.number}
+                  onChange={(e) => setNewNumber(e.target.value)}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
@@ -45,9 +63,10 @@ function ContactsManagerEditForm({
                   Edit e-mail address:
                 </label>
                 <input
-                  required
+                  value={newEmail}
                   type="text"
                   placeholder={contact.email}
+                  onChange={(e) => setNewEmail(e.target.value)}
                   className="p-2 text-sm rounded border-1 placeholder:text-xs shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
                 />
               </div>
@@ -58,7 +77,6 @@ function ContactsManagerEditForm({
                 <button
                   type="submit"
                   className="px-2 text-sm rounded border-1 bg-green-400 shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
-                  onClick={onUpdate}
                 >
                   Submit Edit
                 </button>
@@ -75,6 +93,17 @@ function ContactsManagerEditForm({
           </form>
         </div>
       </div>
+
+      <ContactsManagerSuccessModal
+        contact={`${newName}'s `}
+        isSuccessModalOpen={isSuccessModalOpen}
+        onSuccessModalClose={() => {
+          setSuccessModalOpen(false);
+          onEditFormClose();
+        }}
+        title={"Contact Updated!"}
+        message={"details were successfully updated."}
+      />
     </>
   );
 }
