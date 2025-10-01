@@ -15,7 +15,7 @@ function ContactsManagerNewContactForm({
   const [isSetNameOpen, setSetNameOpen] = useState("");
   const [isValidatorModalOpen, setValidatorModalOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
 
@@ -39,7 +39,7 @@ function ContactsManagerNewContactForm({
         return;
       }
 
-      onAdd(name, number, email);
+      await onAdd(name, number, email);
 
       setSuccessModalOpen(true);
       setSetNameOpen(name);
@@ -48,6 +48,7 @@ function ContactsManagerNewContactForm({
       setNumber("");
       setEmail("");
     } catch (err) {
+      onNewContactFormClose;
       alert(err.message);
     }
   };

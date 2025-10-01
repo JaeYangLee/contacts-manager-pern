@@ -43,8 +43,8 @@ function App() {
       if (err.response && err.response.status === 400) {
         throw new Error(err.response.data.message); // this pass the error from the backend to the frontend
       }
-      throw new Error("Contact Already Exists!");
       console.error("Error Adding Contact:", err.message);
+      throw new Error("Contact Already Exists!");
     }
   };
 
