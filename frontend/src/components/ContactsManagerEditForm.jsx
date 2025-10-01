@@ -14,6 +14,11 @@ function ContactsManagerEditForm({
 
   const handleEdit = (e) => {
     e.preventDefault();
+
+    if (!newName || !newNumber || !newEmail) {
+      return;
+    }
+
     onUpdate(contact.id, newName, newNumber, newEmail);
     setSuccessModalOpen(true);
   };
@@ -41,7 +46,6 @@ function ContactsManagerEditForm({
               <div className="flex flex-col">
                 <label className="text-sm opacity-70">Edit name:</label>
                 <input
-                  value={newName}
                   type="text"
                   placeholder={contact.name}
                   onChange={(e) => setNewName(e.target.value)}
@@ -51,7 +55,6 @@ function ContactsManagerEditForm({
               <div className="flex flex-col">
                 <label className="text-sm opacity-70">Edit phone number:</label>
                 <input
-                  value={newNumber}
                   type="text"
                   placeholder={contact.number}
                   onChange={(e) => setNewNumber(e.target.value)}
@@ -63,7 +66,6 @@ function ContactsManagerEditForm({
                   Edit e-mail address:
                 </label>
                 <input
-                  value={newEmail}
                   type="text"
                   placeholder={contact.email}
                   onChange={(e) => setNewEmail(e.target.value)}
