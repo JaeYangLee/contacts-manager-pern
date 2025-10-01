@@ -25,12 +25,24 @@ const getContacts = async (req, res) => {
 const addContact = async (req, res) => {
   const { name, number, email } = req.body;
 
+  //function to validate if the input is following a correct format
   if (!(isValidNumber(number) || isValidNumber2(number))) {
     return res.status(400).json({ message: "Invalid Number!" });
   }
 
   if (!isValidEmail(email)) {
     return res.status(400).json({ message: "Invalid Email Address!" });
+  }
+
+  //function to allows the backend to identify duplicates when you add a new contact
+  const existing = await contactsManagerModel.findByNumberOrEmail(
+    number,
+    email
+  );
+  if (existing) {
+    return res
+      .status(400)
+      .json({ message: "Contact details already existing!" });
   }
 
   try {
@@ -41,6 +53,10 @@ const addContact = async (req, res) => {
     );
     res.json(newContact);
   } catch (err) {
+    if (err.code === "23505") {
+      return res.status(400).json({ message: "Contact Already Exists!" });
+    }
+
     console.error("Error Adding Contact!", err.message);
     res.status(500).json({ message: "Server Error" });
   }
@@ -50,6 +66,7 @@ const updateContact = async (req, res) => {
   const { id } = req.params;
   const { name, number, email } = req.body;
 
+  //function to validate if the input is following a correct format
   if (!(isValidNumber(number) || isValidNumber2(number))) {
     return res.status(400).json({ message: "Invalid Number!" });
   }

@@ -5,7 +5,6 @@ import ContactsManagerNewContactForm from "./components/ContactsManagerNewContac
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 import ContactManagerSearchBar from "./components/ContactManagerSearchBar";
 import ContactsManagerEditForm from "./components/ContactsManagerEditForm";
-import ContactsManagerValidatorModal from "./components/ContactsManagerValidatorModal";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -40,6 +39,11 @@ function App() {
       });
       setContacts([...contacts, res.data]);
     } catch (err) {
+      //function to alert user when a new contact already exists
+      if (err.response && err.response.status === 400) {
+        throw new Error(err.response.data.message); // this pass the error from the backend to the frontend
+      }
+      throw new Error("Contact Already Exists!");
       console.error("Error Adding Contact:", err.message);
     }
   };

@@ -16,35 +16,40 @@ function ContactsManagerNewContactForm({
   const [isValidatorModalOpen, setValidatorModalOpen] = useState(false);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    if (!name.trim() || !number.trim() || !email.trim()) {
-      return;
+      if (!name.trim() || !number.trim() || !email.trim()) {
+        return;
+      }
+
+      // function to validate email input, I've used regex
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        setValidatorModalOpen(true);
+        return;
+      }
+      // function to validate number input, I've used regex
+      if (
+        !(
+          /^\+63\s?\d{3}\s?\d{3}\s?\d{4}$/.test(number) ||
+          /^09\d{9}$/.test(number)
+        )
+      ) {
+        setValidatorModalOpen(true);
+        return;
+      }
+
+      onAdd(name, number, email);
+
+      setSuccessModalOpen(true);
+      setSetNameOpen(name);
+
+      setName("");
+      setNumber("");
+      setEmail("");
+    } catch (err) {
+      alert(err.message);
     }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      setValidatorModalOpen(true);
-      return;
-    }
-
-    if (
-      !(
-        /^\+63\s?\d{3}\s?\d{3}\s?\d{4}$/.test(number) ||
-        /^09\d{9}$/.test(number)
-      )
-    ) {
-      setValidatorModalOpen(true);
-      return;
-    }
-
-    onAdd(name, number, email);
-
-    setSuccessModalOpen(true);
-    setSetNameOpen(name);
-
-    setName("");
-    setNumber("");
-    setEmail("");
   };
 
   return (
