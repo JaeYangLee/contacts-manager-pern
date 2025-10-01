@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./index.css";
 import ContactsManagerNewContactForm from "./components/ContactsManagerNewContactForm";
@@ -10,7 +10,6 @@ function App() {
   const [contacts, setContacts] = useState([]);
   const [search, setSearch] = useState("");
   const [isNewContactFormOpen, setNewContactForm] = useState(false);
-  const [isEditFormOpen, setEditFormOpen] = useState(false);
 
   useEffect(() => {
     fetchContacts();

@@ -20,6 +20,21 @@ function ContactsManagerNewContactForm({
       return;
     }
 
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert("Invalid Email Address!");
+      return;
+    }
+
+    if (
+      !(
+        /^\+63\s?\d{3}\s?\d{3}\s?\d{4}$/.test(number) ||
+        /^09\d{9}$/.test(number)
+      )
+    ) {
+      alert("Invalid Phone Number!");
+      return;
+    }
+
     onAdd(name, number, email);
 
     setSuccessModalOpen(true);
@@ -61,7 +76,7 @@ function ContactsManagerNewContactForm({
                 </label>
                 <input
                   required
-                  type="text"
+                  type="tel"
                   placeholder="+63 912 345 6789"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
@@ -74,7 +89,7 @@ function ContactsManagerNewContactForm({
                 </label>
                 <input
                   required
-                  type="text"
+                  type="email"
                   placeholder="example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}

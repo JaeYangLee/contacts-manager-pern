@@ -1,5 +1,9 @@
 const contactsManagerModel = require("../models/contactsManagerModel");
-const { isValidEmail, isValidNumber } = require("../utils/validators");
+const {
+  isValidEmail,
+  isValidNumber,
+  isValidNumber2,
+} = require("../utils/validators");
 
 const getContacts = async (req, res) => {
   try {
@@ -21,7 +25,7 @@ const getContacts = async (req, res) => {
 const addContact = async (req, res) => {
   const { name, number, email } = req.body;
 
-  if (!isValidNumber(number)) {
+  if (!(isValidNumber(number) || isValidNumber2(number))) {
     return res.status(400).json({ message: "Invalid Number!" });
   }
 
@@ -46,7 +50,7 @@ const updateContact = async (req, res) => {
   const { id } = req.params;
   const { name, number, email } = req.body;
 
-  if (!isValidNumber(number)) {
+  if (!(isValidNumber(number) || isValidNumber2(number))) {
     return res.status(400).json({ message: "Invalid Number!" });
   }
 
