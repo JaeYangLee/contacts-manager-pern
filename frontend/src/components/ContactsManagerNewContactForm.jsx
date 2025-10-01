@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ContactsManagerSuccessModal from "./ContactsManagerSuccessModal";
+import ContactsManagerValidatorModal from "./ContactsManagerValidatorModal";
 
 function ContactsManagerNewContactForm({
   onAdd,
@@ -12,6 +13,7 @@ function ContactsManagerNewContactForm({
   const [email, setEmail] = useState("");
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isSetNameOpen, setSetNameOpen] = useState("");
+  const [isValidatorModalOpen, setValidatorModalOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ function ContactsManagerNewContactForm({
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      alert("Invalid Email Address!");
+      setValidatorModalOpen(true);
       return;
     }
 
@@ -31,7 +33,7 @@ function ContactsManagerNewContactForm({
         /^09\d{9}$/.test(number)
       )
     ) {
-      alert("Invalid Phone Number!");
+      setValidatorModalOpen(true);
       return;
     }
 
@@ -127,6 +129,12 @@ function ContactsManagerNewContactForm({
         }
         title={"Contact Added!"}
         message={` is now on your contact list!`}
+      />
+
+      <ContactsManagerValidatorModal
+        isValidatorModalOpen={isValidatorModalOpen}
+        onValidatorModalClose={() => setValidatorModalOpen(false)}
+        message={"you're better than this..."}
       />
     </>
   );

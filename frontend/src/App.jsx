@@ -5,6 +5,7 @@ import ContactsManagerNewContactForm from "./components/ContactsManagerNewContac
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 import ContactManagerSearchBar from "./components/ContactManagerSearchBar";
 import ContactsManagerEditForm from "./components/ContactsManagerEditForm";
+import ContactsManagerValidatorModal from "./components/ContactsManagerValidatorModal";
 
 function App() {
   const [contacts, setContacts] = useState([]);
