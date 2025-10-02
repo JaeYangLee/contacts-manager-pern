@@ -10,6 +10,7 @@ const getContacts = async (req, res) => {
     const { search } = req.query;
     let allContacts;
 
+    // function to search contacts that I've practiced and implemented
     if (search) {
       allContacts = await contactsManagerModel.searchContacts(search);
     } else {

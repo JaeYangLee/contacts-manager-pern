@@ -1,24 +1,7 @@
 const pool = require("../database/database");
 
-async function findByNumberOrEmail(number, email) {
-  //this function I've build is for identifying duplicate number or email
-  const result = await pool.query(
-    "SELECT * FROM contacts WHERE number = $1 OR email = $2 LIMIT 1",
-    [number, email]
-  );
-  return result.rows[0];
-}
-
 const getContacts = async () => {
   const result = await pool.query("SELECT * FROM contacts");
-  return result.rows;
-};
-
-const searchContacts = async (search) => {
-  const result = await pool.query(
-    "SELECT * FROM contacts WHERE name ILIKE $1 OR email ILIKE $1 ORDER BY id ASC ",
-    [`%${search}%`]
-  );
   return result.rows;
 };
 
@@ -44,6 +27,23 @@ const deleteContact = async (id) => {
     [id]
   );
   return result.rows[0];
+};
+
+async function findByNumberOrEmail(number, email) {
+  //this function I've build is for identifying duplicate number or email
+  const result = await pool.query(
+    "SELECT * FROM contacts WHERE number = $1 OR email = $2 LIMIT 1",
+    [number, email]
+  );
+  return result.rows[0];
+}
+
+const searchContacts = async (search) => {
+  const result = await pool.query(
+    "SELECT * FROM contacts WHERE name ILIKE $1 OR email ILIKE $1 ORDER BY id ASC ",
+    [`%${search}%`]
+  );
+  return result.rows;
 };
 
 module.exports = {
