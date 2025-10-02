@@ -5,6 +5,7 @@ import ContactsManagerNewContactForm from "./components/ContactsManagerNewContac
 import ContactsManagerContactsList from "./components/ContactsManagerContactsList";
 import ContactManagerSearchBar from "./components/ContactManagerSearchBar";
 import ContactsManagerEditForm from "./components/ContactsManagerEditForm";
+import ContactsManagerFooter from "./components/ContactsManagerFooter";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -111,6 +112,10 @@ function App() {
 
           <ContactsManagerEditForm />
         </main>
+
+        <footer className="fixed bottom-0 w-screen">
+          <ContactsManagerFooter />
+        </footer>
 
         <ContactsManagerNewContactForm
           onAdd={addContact}
