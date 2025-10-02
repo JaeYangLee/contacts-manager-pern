@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ContactsManagerSuccessModal from "./ContactsManagerSuccessModal";
 import ContactsManagerValidatorModal from "./ContactsManagerValidatorModal";
+import ContactsManagerDuplicateModal from "./ContactsManagerDuplicateModal";
 
 function ContactsManagerNewContactForm({
   onAdd,
@@ -14,6 +15,7 @@ function ContactsManagerNewContactForm({
   const [isSuccessModalOpen, setSuccessModalOpen] = useState(false);
   const [isSetNameOpen, setSetNameOpen] = useState("");
   const [isValidatorModalOpen, setValidatorModalOpen] = useState(false);
+  const [isDuplicateModalOpen, setDuplicateModalOpen] = useState(false);
 
   const handleSubmit = async (e) => {
     try {
@@ -48,8 +50,9 @@ function ContactsManagerNewContactForm({
       setNumber("");
       setEmail("");
     } catch (err) {
-      onNewContactFormClose;
-      alert(err.message);
+      //passes the duplicate checker in the frontend
+      // alert(err.message); // can use alert to pass err.message from backend to frontend (pag tinatamad)
+      setDuplicateModalOpen(true);
     }
   };
 
@@ -141,6 +144,11 @@ function ContactsManagerNewContactForm({
         isValidatorModalOpen={isValidatorModalOpen}
         onValidatorModalClose={() => setValidatorModalOpen(false)}
         message={"you're better than this..."}
+      />
+
+      <ContactsManagerDuplicateModal
+        isDuplicateModalOpen={isDuplicateModalOpen}
+        onDuplicateModalClose={() => setDuplicateModalOpen(false)}
       />
     </>
   );
