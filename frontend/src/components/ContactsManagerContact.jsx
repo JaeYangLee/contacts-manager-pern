@@ -27,9 +27,13 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
             />
           </svg>
           <div className="flex flex-col">
-            <p className="text-sm font-bold truncate w-46">{contact.name}</p>
-            <span className="text-xs font-light">{contact.number}</span>
-            <span className="text-xs font-light truncate w-46">
+            <p className="text-sm font-bold truncate w-46 lg:text-lg">
+              {contact.name}
+            </p>
+            <span className="text-xs font-light lg:text-sm">
+              {contact.number}
+            </span>
+            <span className="text-xs font-light truncate w-46 lg:text-sm">
               {contact.email}
             </span>
           </div>
@@ -37,13 +41,13 @@ function ContactsManagerContact({ contact, onUpdate, onDelete }) {
 
         <section className="flex flex-col gap-3">
           <button
-            className="px-1 text-xs bg-blue-300 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
+            className="px-1 text-xs bg-blue-300 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)] lg:text-base"
             onClick={handleEdit}
           >
             Edit
           </button>
           <button
-            className="px-1 text-xs bg-red-400 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)]"
+            className="px-1 text-xs bg-red-400 border rounded shadow-[2px_2px_0px_0px_rgba(0,0,0,0.75)] lg:text-base"
             onClick={() => setDeleteValidatorOpen(true)}
           >
             Delete

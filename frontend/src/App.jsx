@@ -76,7 +76,9 @@ function App() {
     <>
       <div className="w-screen h-screen bg-[#fff2e9]">
         <header className="flex flex-col items-center justify-center gap-2 p-2">
-          <h1 className="text-2xl font-bold">Contacts Manager App</h1>
+          <h1 className="text-2xl font-bold lg:text-4xl">
+            Contacts Manager App
+          </h1>
           <div className="flex flex-row items-center justify-center gap-2">
             <ContactManagerSearchBar search={search} setSearch={setSearch} />
             <button
